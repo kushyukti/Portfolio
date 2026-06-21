@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yukti Kushwaha | Data Analyst Portfolio</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;800&family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #f8fafc;
+        --surface: #ffffff;
+        --border: #e2e8f0;
+        --accent: #8b5cf6;
+        --accent2: #ff6b6b;
+        --accent3: #22c55e;
+        --text: #0f172a;
+        --muted: #64748b;
+        --white: #ffffff;
+        --radius: 16px;
+        --shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+        --shadow-hover: 0 22px 60px rgba(139, 92, 246, 0.12);
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: radial-gradient(
+            circle at top left,
+            rgba(139, 92, 246, 0.12),
+            transparent 28%
+          ),
+          radial-gradient(
+            circle at bottom right,
+            rgba(255, 107, 107, 0.1),
+            transparent 26%
+          ),
+          linear-gradient(180deg, #fbfdff 0%, #f8fafc 100%);
+        color: var(--text);
+        font-family: "Inter", sans-serif;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      .bg-orbs {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+      }
+      .orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(110px);
+        opacity: 0.25;
+      }
+      .orb-1 {
+        width: 520px;
+        height: 520px;
+        background: radial-gradient(
+          circle,
+          rgba(139, 92, 246, 0.35),
+          transparent 70%
+        );
+        top: -120px;
+        left: -120px;
+        animation: drift1 18s ease-in-out infinite alternate;
+      }
+      .orb-2 {
+        width: 420px;
+        height: 420px;
+        background: radial-gradient(
+          circle,
+          rgba(34, 197, 94, 0.22),
+          transparent 70%
+        );
+        bottom: 8%;
+        right: -90px;
+        animation: drift2 22s ease-in-out infinite alternate;
+      }
+      .orb-3 {
+        width: 280px;
+        height: 280px;
+        background: radial-gradient(
+          circle,
+          rgba(255, 107, 107, 0.18),
+          transparent 70%
+        );
+        top: 45%;
+        left: 52%;
+        animation: drift3 16s ease-in-out infinite alternate;
+      }
+
+      @keyframes drift1 {
+        from {
+          transform: translate(0, 0);
+        }
+        to {
+          transform: translate(100px, 70px);
+        }
+      }
+      @keyframes drift2 {
+        from {
+          transform: translate(0, 0);
+        }
+        to {
+          transform: translate(-70px, -100px);
+        }
+      }
+      @keyframes drift3 {
+        from {
+          transform: translate(-50%, -50%) scale(1);
+        }
+        to {
+          transform: translate(-42%, -60%) scale(1.25);
+        }
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 0.75s ease, transform 0.75s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-delay-1 {
+        transition-delay: 0.1s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.2s;
+      }
+      .reveal-delay-3 {
+        transition-delay: 0.3s;
+      }
+      .reveal-delay-4 {
+        transition-delay: 0.4s;
+      }
+
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 6vw;
+        background: rgba(255, 255, 255, 0.82);
+        backdrop-filter: blur(18px);
+        border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+        animation: navSlide 0.6s ease forwards;
+      }
+
+      @keyframes navSlide {
+        from {
+          opacity: 0;
+          transform: translateY(-18px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .nav-logo {
+        font-family: "Syne", sans-serif;
+        font-weight: 800;
+        font-size: 1.15rem;
+        background: linear-gradient(135deg, var(--accent), var(--accent2));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        position: relative;
+        transition: color 0.2s;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        right: 0;
+        height: 1.5px;
+        background: linear-gradient(90deg, var(--accent), var(--accent2));
+        transform: scaleX(0);
+        transition: transform 0.25s;
+      }
+
+      .nav-links a:hover {
+        color: var(--text);
+      }
+      .nav-links a:hover::after {
+        transform: scaleX(1);
+      }
+
+      section {
+        padding: 100px 6vw 80px;
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+
+      #hero {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-top: 120px;
+      }
+
+      .hero-eyebrow {
+        font-size: 0.8rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--accent);
+        font-weight: 600;
+        margin-bottom: 1.2rem;
+        animation: fadeUp 0.8s 0.2s ease both;
+      }
+
+      .hero-name {
+        font-family: "Syne", sans-serif;
+        font-size: clamp(2.8rem, 7vw, 5.5rem);
+        font-weight: 800;
+        line-height: 1.02;
+        color: var(--text);
+        margin-bottom: 0.5rem;
+        animation: fadeUp 0.8s 0.35s ease both;
+      }
+
+      .hero-role {
+        font-family: "Syne", sans-serif;
+        font-size: clamp(1.4rem, 3.5vw, 2.5rem);
+        font-weight: 600;
+        line-height: 1.2;
+        background: linear-gradient(135deg, var(--accent), var(--accent2));
+        background-size: 200% 200%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 1.5rem;
+        animation: fadeUp 0.8s 0.5s ease both, gradientShift 4s ease infinite;
+      }
+
+      @keyframes gradientShift {
+        0%,
+        100% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+      }
+
+      .hero-bio {
+        max-width: 680px;
+        color: var(--muted);
+        font-size: 1.05rem;
+        line-height: 1.75;
+        margin-bottom: 2.5rem;
+        animation: fadeUp 0.8s 0.65s ease both;
+      }
+
+      .hero-cta {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        animation: fadeUp 0.8s 0.8s ease both;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.8rem 1.65rem;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: 0.92rem;
+        text-decoration: none;
+        cursor: pointer;
+        border: none;
+        transition: all 0.25s ease;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--accent), var(--accent2));
+        color: var(--white);
+        box-shadow: 0 10px 28px rgba(139, 92, 246, 0.2);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 38px rgba(139, 92, 246, 0.28);
+      }
+
+      .btn-outline {
+        background: rgba(255, 255, 255, 0.82);
+        color: var(--text);
+        border: 1px solid var(--border);
+        backdrop-filter: blur(10px);
+      }
+
+      .btn-outline:hover {
+        border-color: rgba(139, 92, 246, 0.35);
+        color: var(--accent);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow);
+      }
+
+      .hero-stats {
+        display: flex;
+        gap: 3rem;
+        margin-top: 4rem;
+        padding-top: 2.5rem;
+        border-top: 1px solid rgba(226, 232, 240, 0.9);
+        animation: fadeUp 0.8s 1s ease both;
+      }
+
+      .stat-num {
+        font-family: "Syne", sans-serif;
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--text);
+      }
+
+      .stat-label {
+        font-size: 0.8rem;
+        color: var(--muted);
+        margin-top: 0.2rem;
+      }
+
+      .divider {
+        border: none;
+        border-top: 1px solid rgba(226, 232, 240, 0.95);
+        margin: 0 6vw;
+        position: relative;
+        z-index: 1;
+      }
+
+      .section-header {
+        margin-bottom: 3rem;
+      }
+
+      .section-tag {
+        font-size: 0.75rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--accent);
+        font-weight: 700;
+        margin-bottom: 0.7rem;
+      }
+
+      .section-title {
+        font-family: "Syne", sans-serif;
+        font-size: clamp(1.6rem, 3vw, 2.25rem);
+        font-weight: 800;
+        color: var(--text);
+      }
+
+      .section-sub {
+        color: var(--muted);
+        margin-top: 0.5rem;
+        max-width: 580px;
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.2rem;
+      }
+
+      .project-card,
+      .resume-box,
+      .dashboard-card {
+        background: rgba(255, 255, 255, 0.88);
+        border: 1px solid rgba(226, 232, 240, 0.9);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(16px);
+      }
+
+      .project-card {
+        padding: 1.5rem;
+        transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .project-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(139, 92, 246, 0.28);
+        box-shadow: var(--shadow-hover);
+      }
+
+      .project-tag {
+        display: inline-block;
+        font-size: 0.72rem;
+        font-weight: 700;
+        padding: 0.25rem 0.7rem;
+        border-radius: 999px;
+        background: rgba(139, 92, 246, 0.1);
+        color: var(--accent);
+        margin-bottom: 0.9rem;
+      }
+
+      .project-name {
+        font-family: "Syne", sans-serif;
+        font-weight: 700;
+        font-size: 1.05rem;
+        color: var(--text);
+        margin-bottom: 0.5rem;
+      }
+
+      .project-desc {
+        font-size: 0.88rem;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .project-tools {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-top: 1rem;
+      }
+
+      .tool-badge {
+        font-size: 0.72rem;
+        padding: 0.2rem 0.55rem;
+        border-radius: 999px;
+        background: rgba(148, 163, 184, 0.12);
+        color: var(--muted);
+        border: 1px solid rgba(148, 163, 184, 0.18);
+      }
+
+      .resume-box {
+        padding: 2.5rem;
+        max-width: 940px;
+      }
+
+      .resume-section {
+        margin-bottom: 2.5rem;
+      }
+
+      .resume-section-title {
+        font-family: "Syne", sans-serif;
+        font-weight: 700;
+        font-size: 0.84rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 1.2rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+      }
+
+      .resume-item {
+        margin-bottom: 1.4rem;
+      }
+
+      .resume-item-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 0.3rem;
+      }
+
+      .resume-item-title {
+        font-weight: 700;
+        color: var(--text);
+        font-size: 0.96rem;
+      }
+
+      .resume-item-date {
+        font-size: 0.8rem;
+        color: var(--accent);
+        font-weight: 600;
+      }
+
+      .resume-item-sub {
+        font-size: 0.85rem;
+        color: var(--muted);
+        margin-top: 0.15rem;
+      }
+
+      .resume-item-desc {
+        font-size: 0.85rem;
+        color: var(--muted);
+        margin-top: 0.5rem;
+        line-height: 1.7;
+      }
+
+      .skills-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .skill-chip {
+        padding: 0.35rem 0.85rem;
+        border-radius: 999px;
+        background: rgba(139, 92, 246, 0.08);
+        color: var(--accent);
+        font-size: 0.82rem;
+        font-weight: 600;
+        border: 1px solid rgba(139, 92, 246, 0.18);
+        transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      }
+
+      .skill-chip:hover {
+        background: rgba(139, 92, 246, 0.12);
+        transform: translateY(-1px);
+        box-shadow: 0 8px 18px rgba(139, 92, 246, 0.08);
+      }
+
+      .contact-wrap {
+        display: grid;
+        grid-template-columns: 1fr 1.4fr;
+        gap: 4rem;
+        align-items: start;
+      }
+
+      .contact-info h3 {
+        font-family: "Syne", sans-serif;
+        font-weight: 800;
+        font-size: 1.3rem;
+        color: var(--text);
+        margin-bottom: 0.8rem;
+      }
+
+      .contact-info p {
+        color: var(--muted);
+        font-size: 0.95rem;
+        line-height: 1.75;
+      }
+
+      .contact-links {
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+
+      .contact-link {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 0.88rem;
+        transition: color 0.2s, transform 0.2s;
+      }
+
+      .contact-link:hover {
+        color: var(--accent);
+        transform: translateX(4px);
+      }
+
+      .contact-link-icon {
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
+        background: rgba(148, 163, 184, 0.12);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: background 0.2s, box-shadow 0.2s;
+      }
+
+      .contact-link:hover .contact-link-icon {
+        background: rgba(139, 92, 246, 0.12);
+        box-shadow: 0 8px 18px rgba(139, 92, 246, 0.08);
+      }
+
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+      }
+
+      .form-label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--muted);
+      }
+
+      .form-input,
+      .form-textarea {
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        color: var(--text);
+        padding: 0.8rem 1rem;
+        font-size: 0.9rem;
+        font-family: "Inter", sans-serif;
+        outline: none;
+        transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+      }
+
+      .form-input:focus,
+      .form-textarea:focus {
+        border-color: rgba(139, 92, 246, 0.45);
+        box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.12);
+        transform: translateY(-1px);
+      }
+
+      .form-textarea {
+        resize: vertical;
+        min-height: 130px;
+      }
+
+      .form-submit,
+      .embed-link {
+        background: linear-gradient(135deg, var(--accent), var(--accent2));
+        color: var(--white);
+        border: none;
+        border-radius: 999px;
+        padding: 0.85rem 1.6rem;
+        font-weight: 700;
+        font-size: 0.92rem;
+        cursor: pointer;
+        align-self: flex-start;
+        text-decoration: none;
+        transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+        box-shadow: 0 10px 28px rgba(139, 92, 246, 0.2);
+      }
+
+      .form-submit:hover,
+      .embed-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 38px rgba(139, 92, 246, 0.28);
+        opacity: 0.98;
+      }
+
+      .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+        gap: 1.2rem;
+      }
+
+      .dashboard-card {
+        overflow: hidden;
+        transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      }
+
+      .dashboard-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-hover);
+        border-color: rgba(139, 92, 246, 0.28);
+      }
+
+      .dashboard-card-header {
+        padding: 1.2rem 1.4rem 0;
+      }
+
+      .dashboard-title {
+        font-family: "Syne", sans-serif;
+        font-weight: 700;
+        font-size: 1rem;
+        color: var(--text);
+      }
+
+      .dashboard-desc {
+        font-size: 0.85rem;
+        color: var(--muted);
+        margin-top: 0.3rem;
+      }
+
+      .embed-placeholder {
+        width: 100%;
+        height: 260px;
+        margin-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.8rem;
+        background: linear-gradient(
+          180deg,
+          rgba(248, 250, 252, 0.9),
+          rgba(255, 255, 255, 0.96)
+        );
+        color: var(--muted);
+        font-size: 0.85rem;
+        text-align: center;
+        padding: 1rem;
+        border-top: 1px solid rgba(226, 232, 240, 0.9);
+        border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+      }
+
+      .embed-placeholder svg {
+        opacity: 0.35;
+        animation: pulse 2.5s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.28;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.52;
+          transform: scale(1.03);
+        }
+      }
+
+      .embed-link {
+        margin: 1rem 1.4rem 1.4rem;
+        display: inline-flex;
+        width: fit-content;
+      }
+
+      .cursor {
+        display: inline-block;
+        width: 3px;
+        height: 1em;
+        background: var(--accent);
+        margin-left: 4px;
+        vertical-align: text-bottom;
+        animation: blink 1s step-end infinite;
+      }
+
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+
+      footer {
+        text-align: center;
+        padding: 2rem 6vw;
+        border-top: 1px solid rgba(226, 232, 240, 0.9);
+        color: var(--muted);
+        font-size: 0.82rem;
+        position: relative;
+        z-index: 1;
+        background: rgba(255, 255, 255, 0.45);
+        backdrop-filter: blur(12px);
+      }
+
+      @media (max-width: 700px) {
+        .dashboard-grid,
+        .contact-wrap {
+          grid-template-columns: 1fr;
+        }
+
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-stats {
+          gap: 1.5rem;
+          flex-wrap: wrap;
+        }
+
+        nav {
+          padding: 0.95rem 4vw;
+        }
+
+        .nav-links {
+          gap: 1rem;
+        }
+
+        .resume-box {
+          padding: 1.5rem;
+        }
+
+        section {
+          padding: 92px 4vw 72px;
+        }
+
+        .divider {
+          margin: 0 4vw;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .orb,
+        .reveal,
+        .hero-eyebrow,
+        .hero-name,
+        .hero-role,
+        .hero-bio,
+        .hero-cta,
+        .hero-stats {
+          animation: none !important;
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      }
+      .resume-link {
+  text-decoration: none;
+  color: inherit; /* Inherits the original title color */
+}
+
+.resume-link:hover {
+  text-decoration: underline; /* Shows an underline only on hover */
+}
+    </style>
+  </head>
+  <body>
+    <div class="bg-orbs">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+
+    <nav>
+      <div class="nav-logo">Yukti.K</div>
+      <ul class="nav-links">
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#resume">Resume</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <section id="hero">
+      <div class="hero-eyebrow">Data Analyst · AI Automation · BI</div>
+      <h1 class="hero-name">Yukti Kushwaha</h1>
+      <p class="hero-role" id="typed-role">
+        Turning raw data into actionable decisions.<span class="cursor"></span>
+      </p>
+      <!-- <p class="hero-bio">
+        Analyst with 3 years of experience in manufacturing and power
+        distribution, building dashboards, forecasting models, ETL workflows,
+        and AI-powered automation to improve operational visibility and
+        decision-making.
+      </p> -->
+      <div class="hero-cta">
+        <!-- <a href="#projects" class="btn btn-primary">View Projects →</a> -->
+        <a href="#contact" class="btn btn-outline">Get in Touch</a>
+      </div>
+      <!-- <div class="hero-stats">
+        <div>
+          <div class="stat-num" data-count="5">0</div>
+          <div class="stat-label">Dashboards Built</div>
+        </div>
+        <div>
+          <div class="stat-num" data-count="85">0</div>
+          <div class="stat-label">Reporting Reduction %</div>
+        </div>
+        <div>
+          <div class="stat-num" data-count="91">0</div>
+          <div class="stat-label">Model Accuracy %</div>
+        </div> -->
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- <section id="projects">
+      <div class="section-header reveal">
+        <div class="section-tag">Work</div>
+        <h2 class="section-title">Featured Projects</h2>
+        <p class="section-sub">
+          Selected analytics, automation, and AI work from manufacturing, power,
+          and business reporting.
+        </p>
+      </div>
+
+      <div class="projects-grid">
+        <div class="project-card reveal reveal-delay-1">
+          <span class="project-tag">Analytics</span>
+          <div class="project-name">Manufacturing KPI Dashboards</div>
+          <p class="project-desc">
+            Built 5+ dashboards for blast furnace and steel-making operations,
+            improving visibility by 50% and reducing reporting delays by 70%.
+          </p>
+          <div class="project-tools">
+            <span class="tool-badge">Power BI</span>
+            <span class="tool-badge">Advanced Excel</span>
+            <span class="tool-badge">SQL</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal reveal-delay-2">
+          <span class="project-tag">Forecasting</span>
+          <div class="project-name">Power Demand Prediction</div>
+          <p class="project-desc">
+            Built time-series forecasting models using FB Prophet to optimize
+            power distribution across plant networks, enabling estimated savings
+            of 5cr in H1 FY26.
+          </p>
+          <div class="project-tools">
+            <span class="tool-badge">Python</span>
+            <span class="tool-badge">FB Prophet</span>
+            <span class="tool-badge">Pandas</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal reveal-delay-3">
+          <span class="project-tag">Automation</span>
+          <div class="project-name">GitHub Actions CI/CD Workflow</div>
+          <p class="project-desc">
+            Developed automated pipelines and deployment checks, reducing manual
+            deployment effort by 85% and improving release quality with
+            Claude-powered CI checks.
+          </p>
+          <div class="project-tools">
+            <span class="tool-badge">GitHub Actions</span>
+            <span class="tool-badge">Python</span>
+            <span class="tool-badge">CI/CD</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal reveal-delay-4">
+          <span class="project-tag">AI / GenAI</span>
+          <div class="project-name">Automated AI-Powered MIS</div>
+          <p class="project-desc">
+            Created an automated MIS for supply-chain disruption tracking with
+            AI-powered insights and mitigation suggestions using Power Automate,
+            Google ADK, Gen AI models, and Flask.
+          </p>
+          <div class="project-tools">
+            <span class="tool-badge">Power Automate</span>
+            <span class="tool-badge">Google ADK</span>
+            <span class="tool-badge">Flask</span>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <hr class="divider" />
+
+    <section id="resume">
+      <div class="section-header reveal">
+        <div class="section-tag">Background</div>
+        <h2 class="section-title">Resume</h2>
+      </div>
+
+      <div class="resume-box reveal reveal-delay-1">
+        <div class="resume-section">
+          <div class="resume-section-title">Summary</div>
+          <div class="resume-item-desc">
+            Analyst with 3 years of experience turning raw data into actionable
+            insights to drive process optimization in manufacturing and power
+            distribution. Developed more than 5 interactive dashboards and
+            automated ETL workflows, reducing manual reporting by 85% and
+            accelerating decision-making processes.
+          </div>
+        </div>
+
+        <div class="resume-section">
+          <div class="resume-section-title">Experience</div>
+          <div class="resume-item">
+            <div class="resume-item-header">
+              <div class="resume-item-title">Data Analyst</div>
+              <div class="resume-item-date">Jul 2023 – Present</div>
+            </div>
+            <div class="resume-item-sub">Tata Steel Limited · Remote</div>
+            <div class="resume-item-desc">
+              Collaborated with 3+ stakeholders to define KPIs and delivered 5+
+              dashboards across blast furnace and steel-making operations,
+              enhancing operational visibility by 50% and reducing reporting
+              delays by 70%.
+            </div>
+            <div class="resume-item-desc">
+              Built and deployed time-series forecasting models using FB Prophet
+              to predict power demand and optimize power distribution across
+              plant networks, enabling 5cr savings in H1 of FY26.
+            </div>
+            <div class="resume-item-desc">
+              Spearheaded an analytics project for defect detection of slab
+              using machine learning, achieving 91% accuracy and automating
+              weekly tracking systems.
+            </div>
+            <div class="resume-item-desc">
+              Developed and maintained data pipelines and automated workflows
+              using GitHub Actions CI/CD, reducing manual deployment effort by
+              85% and improving release quality.
+            </div>
+          </div>
+        </div>
+
+        <div class="resume-section">
+          <div class="resume-section-title">Projects</div>
+          <div class="resume-item">
+            <div class="resume-item-title">
+              Automated AI-Powered MIS: Impact of West Asia War on Supply Chain
+            </div>
+            <div class="resume-item-desc">
+              Developed automated MIS reporting on supply disruptions caused by
+              the Israel-Iran war conflict with AI-powered insights and
+              suggested mitigation actions for faster business decision-making.
+            </div>
+            <div class="resume-item-sub">
+              Power Automate · Google ADK · Gen AI Models · Flask
+            </div>
+          </div>
+          <div class="resume-item">
+            <div class="resume-item-title">
+              <a href="https://github.com/kushyukti/Market-Campaign-Analysis" target="_blank" class="resume-link">
+                Market Campaign Analysis
+              </a>
+            </div>
+            <div class="resume-item-desc">
+              Analysed marketing campaign data to identify ROI drivers and forecast revenue uplift, improving campaign targeting accuracy by 20% using regression models.
+            </div>
+            <div class="resume-item-sub">
+              Python · SQL · Regression Models · Scikit-Learn
+            </div>
+          </div>
+        
+          <!-- Project 3 -->
+          <div class="resume-item">
+            <div class="resume-item-title">
+              <a href="https://github.com/kushyukti/Credit-Card-Customer-Segmentation" target="_blank" class="resume-link">
+                Credit Card Customer Segmentation
+              </a>
+            </div>
+            <div class="resume-item-desc">
+              Performed customer segmentation to tailor product offerings. Analyzed credit card payment patterns and applied K-Means (silhouette score: 0.62), and hierarchical clustering algorithms, deriving 3 key clusters with actionable business recommendations.
+            </div>
+            <div class="resume-item-sub">
+              Python · K-Means Clustering · Advanced Excel · Data Modelling
+            </div>
+          </div>
+        </div>
+
+        <div class="resume-section">
+          <div class="resume-section-title">Education</div>
+          <div class="resume-item">
+            <div class="resume-item-header">
+              <div class="resume-item-title">
+                B.Tech. in Computer Science and Engineering
+              </div>
+              <div class="resume-item-date">2020 – 2023</div>
+            </div>
+            <div class="resume-item-sub">
+              Kanpur Institute of Technology · AKTU · Kanpur, India
+            </div>
+          </div>
+        </div>
+
+        <div class="resume-section">
+          <div class="resume-section-title">Skills</div>
+          <div class="skills-grid">
+            <span class="skill-chip">Python</span>
+            <span class="skill-chip">SQL</span>
+            <span class="skill-chip">VBA</span>
+            <span class="skill-chip">Power BI</span>
+            <span class="skill-chip">Advanced Excel</span>
+            <span class="skill-chip">Pandas</span>
+            <span class="skill-chip">NumPy</span>
+            <span class="skill-chip">Scikit-Learn</span>
+            <span class="skill-chip">PySpark</span>
+            <span class="skill-chip">Streamlit</span>
+            <span class="skill-chip">GitHub</span>
+            <span class="skill-chip">MySQL</span>
+            <span class="skill-chip">MS SQL Server</span>
+            <span class="skill-chip">MongoDB</span>
+            <span class="skill-chip">BigQuery</span>
+            <span class="skill-chip">Gen AI</span>
+            <span class="skill-chip">BeautifulSoup</span>
+          </div>
+        </div>
+
+        <div class="resume-section">
+          <div class="resume-section-title">Certifications & Achievements</div>
+          <div class="resume-item">
+            <div class="resume-item-desc">
+              The Data Science Course: Complete Data Science Bootcamp 2024 ·
+              Udemy
+            </div>
+            <div class="resume-item-desc">
+              Google Data Analytics Professional Certificate · Coursera
+            </div>
+            <div class="resume-item-desc">
+              Get Started with Generative AI Studio · Google Cloud
+            </div>
+            <div class="resume-item-desc">
+              Academic Excellence Award · Kanpur Institute of Technology
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section id="contact">
+      <div class="section-header reveal">
+        <div class="section-tag">Say Hello</div>
+        <h2 class="section-title">Get in Touch</h2>
+      </div>
+
+      <div class="contact-wrap">
+        <div class="contact-info reveal">
+          <h3>Let's connect.</h3>
+          <p>
+            Open to analytics, automation, AI workflow, and data science
+            opportunities.
+          </p>
+          <div class="contact-links">
+            <a href="mailto:yukti.kush2510@gmail.com" class="contact-link">
+              <div class="contact-link-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  fill="none"
+                  stroke="#8B5CF6"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+              </div>
+              yukti.kush2510@gmail.com
+            </a>
+            <a
+              href="https://www.linkedin.com/in/yukti-kushwaha"
+              target="_blank"
+              class="contact-link"
+            >
+              <div class="contact-link-icon">
+                <svg width="16" height="16" fill="#8B5CF6" viewBox="0 0 24 24">
+                  <path
+                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                  />
+                  <rect x="2" y="9" width="4" height="12" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg>
+              </div>
+              linkedin.com/in/yukti-kushwaha
+            </a>
+            <a
+              href="https://github.com/kushyukti"
+              target="_blank"
+              class="contact-link"
+            >
+              <div class="contact-link-icon">
+                <svg width="16" height="16" fill="#8B5CF6" viewBox="0 0 24 24">
+                  <path
+                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                  />
+                </svg>
+              </div>
+              github.com/kushyukti
+            </a>
+            <a href="tel:+919532952315" class="contact-link">
+              <div class="contact-link-icon">
+                <svg 
+                  width="16" 
+                  height="16" 
+                  fill="none" 
+                  stroke="#8B5CF6" 
+                  stroke-width="2" 
+                  stroke-linecap="round" 
+                  stroke-linejoin="round" 
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+              </div>
+              +91 9532952315
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2026 Yukti Kushwaha</p>
+    </footer>
+
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) e.target.classList.add("visible");
+          });
+        },
+        { threshold: 0.12 }
+      );
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => observer.observe(el));
+
+      function countUp(el, target, suffix = "") {
+        let start = 0;
+        const duration = 1800;
+        const step = target / (duration / 16);
+        const timer = setInterval(() => {
+          start += step;
+          if (start >= target) {
+            start = target;
+            clearInterval(timer);
+          }
+          el.textContent = Math.floor(start) + suffix;
+        }, 16);
+      }
+
+      const statsObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              const target = parseInt(e.target.dataset.count);
+              const suffixMap = { 5: "+", 85: "%", 91: "%" };
+              countUp(e.target, target, suffixMap[target] || "");
+              statsObserver.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+
+      document
+        .querySelectorAll("[data-count]")
+        .forEach((el) => statsObserver.observe(el));
+
+      function handleSubmit(e) {
+        e.preventDefault();
+        document.getElementById("form-msg").style.display = "block";
+        e.target.reset();
+      }
+    </script>
+  </body>
+</html>
